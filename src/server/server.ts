@@ -1,9 +1,10 @@
 import express from 'express';
-import bodyParser, { json } from 'body-parser';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import enviroment from '../config/enviroment';
+import routers from '../routers/app.router';
 
 export default class Server {
     private _app: express.Application;
@@ -22,6 +23,8 @@ export default class Server {
             .use(cors())
             .use(helmet())
             .use(compression())
+
+            .use('/api',routers)
     }
 
     public start(){

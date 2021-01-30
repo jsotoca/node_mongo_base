@@ -3,9 +3,9 @@ import ErrorResponse from "../interfaces/error-response.interface";
 
 export const _err = (status: number, message: string, name?: string) => {
     let err: ErrorResponse = {
-        status: status || 500,
+        name: name || ErrorTitles.ERROR_DEFAULT,
         message: message || 'Error del lado de servidor.',
-        name: name || ErrorTitles.ERROR_DEFAULT
+        status: status || 500
     }
     throw err;
 };

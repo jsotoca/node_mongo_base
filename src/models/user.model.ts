@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 import { hashSync, compareSync } from 'bcrypt';
 import Roles from '../enums/roles.enum';
 import IUser from '../interfaces/models/user.interface';
+import { _err } from '../helpers/error.helper';
 
 const userSchema = new Schema({
     fullname: { type: String, required:true, lowercase:true, trim: true },
@@ -25,7 +26,11 @@ userSchema.pre<IUser>('save',function(next){
 });
 
 userSchema.method('comparePasswords',function<IUser>(password: string){
-    return compareSync(password, this.password);
+    try {
+        return compareSync(password, this.password);
+    } catch (error) {
+        _err(500,error.message);
+    }
 });
 
 const User = model<IUser>('user',userSchema);

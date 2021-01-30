@@ -5,7 +5,7 @@ import User from "../models/user.model";
 
 export default class AuthRepository {
 
-    public static async signUP(signUpDTO:SignUpDTO){
+    public static async signUp(signUpDTO:SignUpDTO){
         const { email } = signUpDTO;
         const found = await User.findOne({ email });
         if(found) _err(401,`${email} ya registrado en la base de datos`);

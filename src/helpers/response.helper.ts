@@ -7,7 +7,7 @@ export const _response = (res: Response,status?: number, data?: any) => {
     return res;
 }
 
-export const _error_response = (res: Response,status?: number, error?: Error) => {
+export const _error_response = (res: Response,status?: number, error?: any) => {
     let statusCode = status || 500;
     res.status(statusCode)
         .json({ error });

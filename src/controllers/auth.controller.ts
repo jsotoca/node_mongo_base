@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { _err } from '../helpers/error.helper';
 import { _error_response, _response } from '../helpers/response.helper';
 import SignInDTO from '../interfaces/dtos/signin.interface';
 import SignUpDTO from '../interfaces/dtos/signup.interface';

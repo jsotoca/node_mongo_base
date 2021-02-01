@@ -43,3 +43,14 @@ export const forgotPassword = async(req: Request, res: Response) => {
         _error_response(res, error.status || 500, error);
     }
 }
+
+export const resetPassword = async(req: Request, res: Response) => {
+    const { email, token } = req.params;
+    const { password } = req.body;
+    try {
+        await AuthService.resetPassword(email, token, password);
+        _response(res,201,{ message: 'La contraseña se actualizo con exito.'});
+    } catch (error) {
+        _error_response(res, error.status || 500, error);
+    }
+}

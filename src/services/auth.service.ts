@@ -24,4 +24,8 @@ export default class AuthService {
         MailerService.sendEmailResetPassword(user);
     }
 
+    public static async resetPassword(email: string, token: string, password: string){
+        return await AuthRepository.resetPassword(email, token, password);
+    }
+
 }

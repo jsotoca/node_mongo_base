@@ -54,4 +54,18 @@ export default class AuthRepository {
         return found;
     }
 
+    public static async resetPassword(email: string,token: string, password: string){
+        const found: IUser = await User.findOne({ email });
+        if(!found) _err(401,`Email no registrado.`);
+        if(!found.actived) _err(401,`La cuenta fue dada de baja.`);
+        try {
+            const payload:Payload = await decodeTemporalToken(token,found);
+            if(email != payload.email) _err(403,`Email no coincide.`);
+            found.password = password;
+            await found.save();
+        } catch (error) {
+            _err(500,`Se produjo un error autentificando al usuario.`);
+        }
+    }
+
 }

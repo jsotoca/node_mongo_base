@@ -10,7 +10,10 @@ const enviroment = {
     SMTP_PORT       : parseInt(process.env.SMTP_PORT),
     SMTP_SECURE     : process.env.SMTP_SECURE,
     SMTP_USER       : process.env.SMTP_USER,
-    SMTP_PASSWORD   : process.env.SMTP_PASSWORD
+    SMTP_PASSWORD   : process.env.SMTP_PASSWORD,
+    COMPANY_NAME    : process.env.COMPANY_NAME,
+    COMPANY_ADDRESS : process.env.COMPANY_ADDRESS,
+    COMPANY_EMAIL   : process.env.COMPANY_EMAIL,
 };
 
 export default enviroment;

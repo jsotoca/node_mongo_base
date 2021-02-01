@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import enviroment from '../config/enviroment';
 import ErrorTitles from '../enums/error-titles.enum';
+import { emailConfirmation } from '../helpers/emails/emails.helper';
 import { _err } from '../helpers/error.helper';
 import MailerOptions from '../interfaces/mailer.interface';
 import IUser from '../interfaces/models/user.interface';
@@ -39,6 +40,7 @@ export default class MailerService {
             to: user.email,
             subject: ` Confirma tu cuenta en ${enviroment.APP_NAME}`,
             text: "Sending test email 123456",
+            html: emailConfirmation()
         }
         await this.sendEmail(mailerOptions);
     }

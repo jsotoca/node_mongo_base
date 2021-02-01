@@ -1,3 +1,4 @@
 export default interface Payload {
-    _id: string
+    _id?: string
+    email?: string
 }

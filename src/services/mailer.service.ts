@@ -40,7 +40,7 @@ export default class MailerService {
             to: user.email,
             subject: ` Confirma tu cuenta en ${enviroment.APP_NAME}`,
             text: "Sending test email 123456",
-            html: emailConfirmation()
+            html: emailConfirmation(user)
         }
         await this.sendEmail(mailerOptions);
     }

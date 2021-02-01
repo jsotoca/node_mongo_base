@@ -1,6 +1,10 @@
+import enviroment from "../../config/enviroment";
+import IUser from "../../interfaces/models/user.interface";
+import { generateTemporalToken } from "../token.helper";
 import { emailFooter, emailHeader } from "./template.email";
 
-export const emailConfirmation = () => {
+export const emailConfirmation = (user:IUser) => {
+    const url = generateUrl(user, 'confirmation');
     const body = `
         <!-- START MAIN CONTENT AREA -->
         <tr>
@@ -17,7 +21,7 @@ export const emailConfirmation = () => {
                             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                             <tbody>
                                 <tr>
-                                <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;"> <a href="http://htmlemail.io" target="_blank" style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">Confirmar mi cuenta</a> </td>
+                                <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;"> <a href="${url}" target="_blank" style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">Confirmar mi cuenta</a> </td>
                                 </tr>
                             </tbody>
                             </table>
@@ -34,4 +38,10 @@ export const emailConfirmation = () => {
         </tr>
     `;
     return emailHeader('Confirma tu cuenta 💖')+body+emailFooter();
+}
+
+const generateUrl = (user: IUser, route: string) => {
+    const token = generateTemporalToken(user);
+    const url = `${enviroment.APP_URL}/auth/${route}/${user.email}/${token}`;
+    return url;
 }

@@ -6,6 +6,8 @@ import AuthService from '../services/auth.service';
 
 export const signUp = async(req: Request, res: Response) => {
     const signUpDTO = req.body as SignUpDTO;
+    console.log(req.file);
+    console.log(req.body);
     try {
         const data = await AuthService.signUp(signUpDTO);
         _response(res,null,data);

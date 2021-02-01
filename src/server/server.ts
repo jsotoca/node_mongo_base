@@ -1,11 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import multer from 'multer';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import enviroment from '../config/enviroment';
 import routers from '../routers/app.router';
-
 export default class Server {
     private _app: express.Application;
     private _port: number | string;

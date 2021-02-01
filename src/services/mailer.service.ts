@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import enviroment from '../config/enviroment';
 import ErrorTitles from '../enums/error-titles.enum';
-import { emailConfirmation } from '../helpers/emails/emails.helper';
+import { emailConfirmation, emailResetPassword } from '../helpers/emails/emails.helper';
 import { _err } from '../helpers/error.helper';
 import MailerOptions from '../interfaces/mailer.interface';
 import IUser from '../interfaces/models/user.interface';
@@ -39,8 +39,17 @@ export default class MailerService {
             from: enviroment.MAIL,
             to: user.email,
             subject: ` Confirma tu cuenta en ${enviroment.APP_NAME}`,
-            text: "Sending test email 123456",
             html: emailConfirmation(user)
+        }
+        await this.sendEmail(mailerOptions);
+    }
+
+    public static async sendEmailResetPassword(user:IUser){
+        const mailerOptions: MailerOptions = {
+            from: enviroment.MAIL,
+            to: user.email,
+            subject: `Resetea tu contraseña de ${enviroment.APP_NAME}`,
+            html: emailResetPassword(user)
         }
         await this.sendEmail(mailerOptions);
     }

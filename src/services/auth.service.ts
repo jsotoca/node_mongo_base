@@ -19,4 +19,9 @@ export default class AuthService {
         return await AuthRepository.verifiedAccount(email, token);
     }
 
+    public static async forgotPassword(email: string){
+        const user = await AuthRepository.forgotPassword(email);
+        MailerService.sendEmailResetPassword(user);
+    }
+
 }

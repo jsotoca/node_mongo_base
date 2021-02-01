@@ -1,8 +1,10 @@
 import ErrorTitles from "../enums/error-titles.enum";
 import { _err } from "../helpers/error.helper";
-import { generateToken } from "../helpers/token.helper";
+import { decodeTemporalToken, generateToken } from "../helpers/token.helper";
 import SignInDTO from "../interfaces/dtos/signin.interface";
 import SignUpDTO from "../interfaces/dtos/signup.interface";
+import IUser from "../interfaces/models/user.interface";
+import Payload from "../interfaces/payload.intertace";
 import User from "../models/user.model";
 
 export default class AuthRepository {
@@ -27,6 +29,21 @@ export default class AuthRepository {
         if(!found.comparePasswords(password)) _err(401,`Email y/o contraseña incorrectas!`);
         const token = generateToken({ _id: found._id});
         return { user:found, token };
+    }
+
+    public static async verifiedAccount(email: string, token:string){
+        const found: IUser = await User.findOne({ email });
+        if(!found) _err(401,`Email no registrado.`);
+        if(found.verified) _err(201,`Email ya verificado.`);
+        try {
+            const payload:Payload = await decodeTemporalToken(token,found);
+            if(email != payload.email) _err(403,`Email no coincide.`);
+            found.verified = true;
+            found.actived = true;
+            await found.save();
+        } catch (error) {
+            _err(500,`Se produjo un error autentificando al usuario.`);
+        }
     }
 
 }

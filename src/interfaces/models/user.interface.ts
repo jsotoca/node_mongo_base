@@ -6,6 +6,7 @@ export default interface IUser extends Document {
     password: string
     avatar?: string
     role?: string
+    verified?: boolean
     actived?: boolean
     createdAt?: string
     updatedAt?: string

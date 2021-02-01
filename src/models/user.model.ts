@@ -10,7 +10,8 @@ const userSchema = new Schema({
     password: { type: String, required:true, trim: true },
     avatar: { type: String, default:'no_avatar.png' },
     role: { type: String, enum:Roles, default:Roles.USER },
-    actived: { type: Boolean, default: true }
+    verified: { type: Boolean, default: false },
+    actived: { type: Boolean, default: false }
 },{ timestamps: true });
 
 userSchema.methods.toJSON = function<IUser>(){

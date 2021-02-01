@@ -35,3 +35,19 @@ export const decodeToken = (token: string) => {
         });
     })
 }
+
+
+export const decodeTemporalToken = (token: string,user: IUser) => {
+    return new Promise<Payload>((resolve, reject) => {
+        const secret = user.password + '-' + user.createdAt;
+        verify(token, secret, (err, payload) => {
+            if(err){
+                reject(err);
+                return ;
+            }
+            else{
+                resolve(payload as Payload);
+            }
+        });
+    });
+}

@@ -15,4 +15,8 @@ export default class AuthService {
         return await AuthRepository.signIn(signInDTO);
     }
 
+    public static async verifiedAccount(email: string, token: string){
+        return await AuthRepository.verifiedAccount(email, token);
+    }
+
 }

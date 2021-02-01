@@ -23,3 +23,13 @@ export const signIn = async(req: Request, res: Response) => {
         _error_response(res, error.status || 500, error);
     }
 }
+
+export const verifiedAccount = async(req: Request, res: Response) => {
+    const { email, token } = req.params;
+    try {
+        await AuthService.verifiedAccount(email, token);
+        _response(res,201,{ message: 'cuenta verificada.'});
+    } catch (error) {
+        _error_response(res, error.status || 500, error);
+    }
+}

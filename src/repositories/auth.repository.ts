@@ -40,7 +40,7 @@ export default class AuthRepository {
             if(email != payload.email) _err(403,`Email no coincide.`);
             found.verified = true;
             found.actived = true;
-            await found.save();
+            await found.update({ verified: true, actived: true});
         } catch (error) {
             _err(500,`Se produjo un error autentificando al usuario.`);
         }

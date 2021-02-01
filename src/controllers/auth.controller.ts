@@ -6,8 +6,6 @@ import AuthService from '../services/auth.service';
 
 export const signUp = async(req: Request, res: Response) => {
     const signUpDTO = req.body as SignUpDTO;
-    console.log(req.file);
-    console.log(req.body);
     try {
         const data = await AuthService.signUp(signUpDTO);
         _response(res,null,data);
@@ -40,7 +38,7 @@ export const forgotPassword = async(req: Request, res: Response) => {
     const { email } = req.params;
     try {
         await AuthService.forgotPassword(email);
-        _response(res,201,{ message: 'Se envio el email de confirmación con exito.'});
+        _response(res,201,{ message: 'Se envio el email de recuperar contraseña con exito.'});
     } catch (error) {
         _error_response(res, error.status || 500, error);
     }

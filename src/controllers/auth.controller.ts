@@ -6,8 +6,9 @@ import AuthService from '../services/auth.service';
 
 export const signUp = async(req: Request, res: Response) => {
     const signUpDTO = req.body as SignUpDTO;
+    const avatar = req.file;
     try {
-        const data = await AuthService.signUp(signUpDTO);
+        const data = await AuthService.signUp(signUpDTO, avatar);
         _response(res,null,data);
     } catch (error) {
         _error_response(res, error.status || 500, error);

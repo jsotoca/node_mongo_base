@@ -17,6 +17,32 @@ _Despues de haber descargado o clonado el repositorio lo primero que tienes que 
 npm init
 ```
 
+_Antes de iniciar la aplicación necesitas crear un archivo .env en el root con la siguiente información_
+
+```
+APP_NAME            = el nombre de tu app
+APP_URL             = la url de tu app 
+APP_PORT            = el puerto de tu app para express
+MONGO_URI           = la uri de tu mongodb
+TOKEN_SECRET        = el secret para generar los tokens
+
+MAIL                = el email desde donde se envia los emails
+SMTP_HOST           = el host de tu servicio smtp
+SMTP_PORT           = el puerto de tu servicio smtp
+SMTP_SECURE         = false
+SMTP_USER           = el usuario de tu servicio smtp
+SMTP_PASSWORD       = La contraseña de tu usuario smtp
+
+AWS_BUCKET          = el bucket de aws donde almacenaras tus archivos
+AWS_LOCATION        = la localización del bucket
+AWS_ACCESS_KEY_ID   = el access key id de tu aws
+AWS_SECRET_KEY      = el secret key id de tu aws
+
+COMPANY_NAME        = el nombre de tu empresa
+COMPANY_ADDRESS     = la direccion de tu empresa
+COMPANY_EMAIL       = el email de tu empresa
+```
+
 _Corriendo el proyecto en modo de desarrollo_
 
 ```
@@ -74,4 +100,3 @@ _Dependencias de desarollo_
 * Comenta a otros sobre este proyecto 📢
 * Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
 * Da las gracias públicamente 🤓.
-* etc.

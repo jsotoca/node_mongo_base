@@ -14,7 +14,7 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 _Despues de haber descargado o clonado el repositorio lo primero que tienes que hacer es instalar las dependencias necesarias_
 
 ```
-npm init
+npm install
 ```
 
 _Antes de iniciar la aplicación necesitas crear un archivo .env en el root con la siguiente información_
